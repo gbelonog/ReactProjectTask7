@@ -15,17 +15,17 @@ const ERRORS = {
 export class NewsForm extends Component {
   
   titleInput = null;
-  
+  shortDescriptionInput = null;
 
   state = {
   //   // title: '',
   //   shortDescription: '',
-  //   text: '',
+    text: '',
   //   photo: '',
   //   hashTags: [],
   //   author: '',
     titleError: false,
-  //   textError: false,
+     textError: false,
   //   photoError: false,
   //   hashTagsError: false,
   //   authorError: false,
@@ -39,17 +39,20 @@ export class NewsForm extends Component {
     //   ...this.state
     // };
     let title = this.titleInput.value;
-    //let titleError = false;
-    if(!title){this.setState({titleError: true})};
+    let shortDescription = this.shortDescriptionInput.value;
 
+    if(!title){this.setState({titleError: true})};
+    let text = this.state.text;
     const news = {
       id,
-      title
+      title, 
+      shortDescription,
+      text
     };
     console.log("news", news);
     
     
-    // if(!this.state.text){this.setState({textError: true})};
+     if(!this.state.text){this.setState({textError: true})};
     // if(!this.state.photo){this.setState({photoError: true})};
     // if(!this.state.author){this.setState({authorError: true})};
     // if(this.state.hashTags.length === 0){this.setState({hashTagsError: true})};
@@ -64,15 +67,15 @@ export class NewsForm extends Component {
     //if(this.state.titleError)this.props.onAddNewsItem({news});
   };
 
-  // handleChangeText = (e) => {
-  //   const input = e.currentTarget;
-  //   console.log(e.currentTarget);
-  //   const { value, name } = input;
-  //   this.setState({ [name]: value });
-  //   if(name !== 'shortDescription'){
-  //     this.setState({ [name + 'Error']: false });
-  //   }
-  // };
+  handleChangeText = (e) => {
+    const input = e.currentTarget;
+    console.log(e.currentTarget);
+    const { value, name } = input;
+    this.setState({ [name]: value });
+    if(name !== 'shortDescription'){
+      this.setState({ [name + 'Error']: false });
+    }
+  };
 
   // handleChangePhoto = (e) => {
   //   const file = e.currentTarget.files[0];
@@ -112,12 +115,12 @@ export class NewsForm extends Component {
     const {
       // title,
       // shortDescription,
-      // text,
+      text,
       // photo,
       // hashTags,
       // author,
       titleError,
-      // textError,
+      textError,
       // photoError,
       // hashTagsError,
       // authorError,
@@ -135,10 +138,14 @@ export class NewsForm extends Component {
               type="text" 
               name="title"></input></div>
               {titleError && (<span style={{ color: 'red' }}>{ERRORS.title}</span>)}
-            {/* <div>Short Description:<textarea value={shortDescription} onChange={this.handleChangeText} name="shortDescription"/></div>
+            <div>Short Description:<textarea 
+              //value={shortDescription} 
+              //onChange={this.handleChangeText} 
+              ref={(node) => this.shortDescriptionInput = node}
+              name="shortDescription"/></div>
             <div>Text:<textarea value={text} onChange={this.handleChangeText} name="text"/></div>
             {textError && (<span style={{ color: 'red' }}>{ERRORS['text']}</span>)}
-            <div>Photo:
+            {/* <div>Photo:
                 {photo.length > 0 && (
                 <img style={{
                     width: '300px',

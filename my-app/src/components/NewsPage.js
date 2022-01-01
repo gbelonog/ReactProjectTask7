@@ -20,6 +20,7 @@ class NewsPage extends Component {
   };
   
   addNewsItem = (e) => {
+    console.log('e', e);
     this.setState({
       news: [
         e,

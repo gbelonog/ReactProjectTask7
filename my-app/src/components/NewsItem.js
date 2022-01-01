@@ -7,17 +7,12 @@ export class NewsItem extends Component{
   newsCardEl = createRef();
   componentDidMount(){
     let newsCard = this.newsCardEl.current;
-    //let timeline = gsap.timeline();
-
-    //let newsCardTransition = gsap.fromTo(newsCard, {
     gsap.fromTo(newsCard, {
-      opacity: 0,
-      
+      opacity: 0,   
     }, {
       opacity: 1,
       duration: 3,
     });
-    //timeline.add(newsCardTransition);
   }
 
   render() {
