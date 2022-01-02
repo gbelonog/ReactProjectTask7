@@ -23,7 +23,7 @@ class NewsPage extends Component {
     console.log('e', e);
     this.setState({
       news: [
-        e,
+        e.news,
         ...this.state.news,
       ]
     });

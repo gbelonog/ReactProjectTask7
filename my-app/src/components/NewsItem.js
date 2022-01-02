@@ -17,7 +17,7 @@ export class NewsItem extends Component{
 
   render() {
     const { newsItem, onRemoveNewsItem } = this.props;
-
+    
     return (
       <div className="NewsItem" ref={this.newsCardEl}>
         <h1>{newsItem.title}</h1>
